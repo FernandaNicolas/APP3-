@@ -1,5 +1,5 @@
 //var _ = require("underscore");
-
+const fs = require('fs');
 // Se marcará el inicio del laberinto con un 2
 function marcar_inicio(tablero){
     let flag = true;
@@ -23,11 +23,19 @@ function  marcar_final(tablero){
     return tablero;
 }
 
-let laberinto = [[1,0,1,0,1],
+/*let laberinto = [[1,0,1,0,1],
                  [1,0,1,0,1],
                  [0,0,0,0,0],
                  [1,0,1,0,0],
-                 [0,0,0,0,1]]
+                 [0,0,0,0,1]];
 console.log(marcar_inicio(laberinto));
 console.log(marcar_final(laberinto));
-console.log(laberinto);
+*/
+fs.readFile('input.txt', 'utf8',(err,data)=>{
+    if(err){
+        console.error(err);
+        return;
+    }
+    console.log(data);
+})
+//console.log(laberinto);
