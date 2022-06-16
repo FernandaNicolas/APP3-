@@ -24,10 +24,10 @@ function  marcar_final(tablero){
 }
 
 /*let laberinto = [[1,0,1,0,1],
-                 [1,0,1,0,1],
-                 [0,0,0,0,0],
-                 [1,0,1,0,0],
-                 [0,0,0,0,1]];
+                   [1,0,1,0,1],
+                   [0,0,0,0,0],
+                   [1,0,1,0,0],
+                   [0,0,0,0,1]];
 console.log(marcar_inicio(laberinto));
 console.log(marcar_final(laberinto));
 */
@@ -37,5 +37,5 @@ fs.readFile('input.txt', 'utf8',(err,data)=>{
         return;
     }
     console.log(data);
-})
+});
 //console.log(laberinto);
