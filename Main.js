@@ -31,7 +31,6 @@ let laberinto = lines.map(row => row.map(bit => +bit));
 laberinto.forEach(function (pos){
     pos.pop(pos.length-1);
 });
-log(laberinto);
 laberinto = marcar_inicio(laberinto);
 laberinto = marcar_final(laberinto)
 console.log(laberinto);
