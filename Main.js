@@ -22,6 +22,11 @@ function  marcar_final(tablero){
     });
     return tablero;
 }
+// Se ejecutara esta funcion de manera recursiva hasta completar el laberinto
+function recursividad(tablero,position){
+    //code here
+
+}
 // Ahora leeremos el archivo "input.txt" y lo transformamos en un array de arrays
 const log = data => console.log(JSON.stringify(data));
 let txt = fs.readFileSync('input.txt', 'utf8',);
@@ -34,3 +39,16 @@ laberinto.forEach(function (pos){
 laberinto = marcar_inicio(laberinto);
 laberinto = marcar_final(laberinto)
 console.log(laberinto);
+//Ahora encontramos la posicion inicial del laberinto
+let posicion_inicial = []
+let temp_num = 0;
+// Primero encontramos el priner index del inicio
+laberinto.forEach(function(lab){
+    if(lab[0]=== 2){
+        posicion_inicial.push(temp_num)
+    }
+    temp_num+= 1;
+});
+// Como sabemos que el inicio está siempre a lo mas a la izquierda, su segundo indice será siempre 0
+posicion_inicial.push(0);
+console.log(recursividad(laberinto,posicion_inicial));
