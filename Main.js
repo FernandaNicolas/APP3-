@@ -23,7 +23,7 @@ function  marcar_final(tablero){
     return tablero;
 }
 // Se ejecutara esta funcion de manera recursiva hasta completar el laberinto
-function recursividad(tablero,position){
+function recursividad(tablero,posicion,recorrido){
     //code here
 
 }
@@ -51,4 +51,4 @@ laberinto.forEach(function(lab){
 });
 // Como sabemos que el inicio está siempre a lo mas a la izquierda, su segundo indice será siempre 0
 posicion_inicial.push(0);
-console.log(recursividad(laberinto,posicion_inicial));
+console.log(recursividad(laberinto,posicion_inicial,recorrido));
