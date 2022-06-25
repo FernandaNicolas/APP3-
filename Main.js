@@ -23,55 +23,75 @@ function  marcar_final(tablero){
     return tablero;
 }
 // Se ejecutara esta funcion de manera recursiva hasta completar el laberinto
-function recursividad(tablero,x,y,recorrido){
-    //console.log(tablero);
+function recursividad(tablero,x,y,recorrido,final_path){
     //Primero chequeamos si tenemos un 3 en las posiciones adyacentes para llegar a la meta
     // Derecha
-    if(tablero[x][y+1]===3){
-        recorrido.push([x,y+1]);
-        return recorrido;
+    if(y+1 < tablero[0].length){
+        if(tablero[x][y+1]===3){
+            recorrido.push([x,y+1]);
+            final_path.push(recorrido)
+            return;
+        }
     }
     // Abajo
-    if(tablero[x+1][y]=== 3){
-        recorrido.push([x+1,y]);
-        return recorrido;
+    if(x+1 < tablero.length){
+        if(tablero[x+1][y]===3){
+            recorrido.push([x+1,y]);
+            final_path = final_path.push(recorrido.list)
+            return;
+        }
     }
     //Arriba
-    if(tablero[x-1][y]===3){
-        recorrido.push([x-1,y]);
-        return recorrido;
+    if(x-1 <= tablero.length){
+        if(tablero[x-1][y]===3){
+            recorrido.push([x-1,y]);
+            final_path = final_path.push(recorrido.list)
+            return;
+        }
     }
     //Izquierda
-    if(tablero[x][y-1]===3){
-        recorrido.push([x,y-1]);
-        return recorrido;
+    if(y-1 <= tablero[0].length){
+        if(tablero[x][y-1]===3){
+            recorrido.push([x,y-1]);
+            final_path = final_path.push(recorrido.list)
+            return;
+        }
     }
     //Luego revisamos si hay un espacio con un 0 en las posiciones adjacentes para así avanzar a este
     // Derecha
-    if(tablero[x][y+1]===0 && !tablero[x][y+1]){
-        recorrido.push([x,y+1]);
-        tablero[x][y+1] = 2;
-        return recursividad(tablero,x,y+1,recorrido);
+    if(y+1 < tablero[0].length){
+        if(tablero[x][y+1]===0 && !tablero[x][y+1]){
+            recorrido.push([x,y+1]);
+            tablero[x][y+1] = 2;
+            recursividad(tablero,x,y+1,recorrido,final_path);
+        }
     }
     // Abajo
-    if(tablero[x+1][y]===0 && !tablero[x+1][y]){
-        recorrido.push([x+1,y]);
-        tablero[x+1][y] = 2;
-        return recursividad(tablero,x+1,y,recorrido);
+    if(x+1 < tablero.length){
+        if(tablero[x+1][y]===0 && !tablero[x+1][y]){
+            recorrido.push([x+1,y]);
+            tablero[x+1][y] = 2;
+            recursividad(tablero,x+1,y,recorrido,final_path);
+        }
     }
     //Arriba
-    if(tablero[x-1][y]===0 && !tablero[x-1][y]){
-        recorrido.push([x-1,y]);
-        tablero[x-1][y] = 2;
-        return recursividad(tablero,x-1,y,recorrido);
+    if(x-1 <= tablero.length){
+        if(tablero[x-1][y]===0 && !tablero[x-1][y]){
+            recorrido.push([x-1,y]);
+            tablero[x-1][y] = 2;
+            recursividad(tablero,x-1,y,recorrido,final_path);
+        }
     }
     //Izquierda
-    if(tablero[x][y-1]===0 && tablero[x][y-1]){
-        recorrido.push([x,y-1]);
-        tablero[x][y-1] = 2;
-        return recursividad(tablero,x,y-1,recorrido);
+    if(y-1 <= tablero[0].length){
+        if(tablero[x][y-1]===0 && tablero[x][y-1]){
+            recorrido.push([x,y-1]);
+            tablero[x][y-1] = 2;
+            recursividad(tablero,x,y-1,recorrido,final_path);
+        }
     }
-    return console.log("Algo salió mal");
+    console.log("Terminando la linea recursiva!");
+    console.log(final_path)
 }
 // Ahora leeremos el archivo "input.txt" y lo transformamos en un array de arrays
 let txt = fs.readFileSync('input.txt', 'utf8',);
@@ -100,7 +120,8 @@ let x = posicion_inicial[0]; //2
 let y = posicion_inicial[1]; //0
 let lista_recorrido = [];
 lista_recorrido.push(posicion_inicial);
-let archivo_salida = recursividad(laberinto,x,y,lista_recorrido);
+let path = []
+let archivo_salida = recursividad(laberinto,x,y,lista_recorrido,path);
 const archivo_final = JSON.stringify(archivo_salida);
 console.log(archivo_final);
 fs.writeFile("output.txt",archivo_final,err => {
