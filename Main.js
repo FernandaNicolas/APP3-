@@ -30,6 +30,7 @@ function recursividad(tablero,x,y,recorrido,final_path){
         if(tablero[x][y+1]===3){
             recorrido.push([x,y+1]);
             final_path.push(recorrido)
+
             return;
         }
     }
@@ -90,8 +91,7 @@ function recursividad(tablero,x,y,recorrido,final_path){
             recursividad(tablero,x,y-1,recorrido,final_path);
         }
     }
-    console.log("Terminando la linea recursiva!");
-    console.log(final_path)
+    return final_path;
 }
 // Ahora leeremos el archivo "input.txt" y lo transformamos en un array de arrays
 let txt = fs.readFileSync('input.txt', 'utf8',);
@@ -125,5 +125,4 @@ let archivo_salida = recursividad(laberinto,x,y,lista_recorrido,path);
 const archivo_final = JSON.stringify(archivo_salida);
 console.log(archivo_final);
 fs.writeFile("output.txt",archivo_final,err => {
-
 });
